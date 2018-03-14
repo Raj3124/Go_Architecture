@@ -2,10 +2,10 @@ package database
 
 import(
 	"fmt"
-	 Conf "myarch/configuration"
+	 Conf "Go_Architecture/configuration"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
-	MSG "myarch/message"
+	//MSG "Go_Architecture/message"
 )
 
 var db *sql.DB
@@ -15,15 +15,20 @@ func Start_Con(){
 	dsn:=Conf.DB_USER+":"+Conf.DB_PASS+"@"+Conf.DB_HOST+"/"+Conf.DB_NAME+"?charset=utf8"
 	db,err=sql.Open("mysql",dsn)
 	if err!=nil {
-		MSG.Err_message(err)
+		fmt.Println("Cannot Connect to Database..")
 	}else{
-		fmt.Print("Connection Started\n")
+		fmt.Println("--*Starting Server *--\n")
+		fmt.Println("--*Connecting to Database*--\n")
 	}
 }
 
 func Stop_Con(){
 	db.Close()
-	fmt.Print("Connection Stopped\n")
+	//fmt.Print("Database Connection Stopped\n")
+}
+
+func Faculty(){
+
 }
 
 func Create(){
@@ -33,11 +38,8 @@ func Create(){
 	}
 }
 
-func Insert(){
-	//_,err=db.Query("Insert into newtable values(2)")
-	//if err!=nil{
-//		panic(err)
-//	}
+func Insert(test string){
+	fmt.Println(test)
 }
 
 func Update(){
