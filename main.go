@@ -1,9 +1,9 @@
 package main
 
 import(
-	DB "../myarch/sql"
-	MSG "../myarch/message"
-	API "../myarch/api"
+	DB "Go_Architecture/sql"
+	"fmt"
+	API "Go_Architecture/api"
 	"net/http"
 )
 
@@ -11,12 +11,9 @@ func main(){
 	DB.Start_Con()
 	http.HandleFunc("/",API.ErrorMessage)
 	http.HandleFunc("/insert",API.Insert)
-	http.HandleFunc("/delete",API.Delete)
-	http.HandleFunc("/update",API.Update)
-	http.HandleFunc("/create",API.Create)
-	err:=http.ListenAndServe(":2008",nil)
+	err:=http.ListenAndServe(":2011",nil)
 	if err!=nil{
-		MSG.DB_message(err)
+		fmt.Println("Cannot Start Server... check IP and port number")
 	}
-	DB.Stop_Con()
+	//DB.Stop_Con()
 }
