@@ -2,9 +2,12 @@ package database
 
 import(
 	"fmt"
-	 Conf "Go_Architecture/configuration"
+	"os"
 	"database/sql"
+	"net/http"
 	_ "github.com/go-sql-driver/mysql"
+Conf "Go_Architecture/configuration"
+resp "Go_Architecture/response"
 	//MSG "Go_Architecture/message"
 )
 
@@ -16,10 +19,16 @@ func Start_Con(){
 	db,err=sql.Open("mysql",dsn)
 	if err!=nil {
 		fmt.Println("Cannot Connect to Database..")
+		os.Exit(3)
 	}else{
-		fmt.Println("--*Starting Server *--\n")
-		fmt.Println("--*Connecting to Database*--\n")
+		fmt.Println("--*Started Server *--\n")
+		fmt.Println("--*Connected to Database*--\n")
 	}
+	err = db.Ping()
+if err != nil {
+	fmt.Println("Cannot Connect to Database")
+	os.Exit(3)
+}
 }
 
 func Stop_Con(){
@@ -27,31 +36,9 @@ func Stop_Con(){
 	//fmt.Print("Database Connection Stopped\n")
 }
 
-func Faculty(){
-
-}
-
-func Create(){
-	_,err=db.Query("Create table newtable(id int)")
+func Insert(test string,w http.ResponseWriter){
+	_,err=db.Query("insert into login(test) values(?)",test)
 	if err!=nil{
-		panic(err)
+		resp.DatabaseInsertionFailed(w)
 	}
-}
-
-func Insert(test string){
-	fmt.Println(test)
-}
-
-func Update(){
-	//_,err=db.Query("Update newtable set id=1 where id =2")
-	//if err!=nil{
-//		panic(err)
-//	}
-}
-
-func Delete(){
-	//_,err=db.Query("delete from newtable where id=1")
-	//if err!=nil{
-//		panic(err)
-//	}
 }
