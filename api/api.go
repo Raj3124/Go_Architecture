@@ -28,8 +28,7 @@ func Insert(w http.ResponseWriter,r *http.Request){
 		if t.Test == "" {
 		fmt.Println("empty")
 		}else{
-			fmt.Println(t.Test)
-			DB.Insert(t.Test)
+			DB.Insert(t.Test, w)
 		}
 		}else{
 			ip, port, err2 := net.SplitHostPort(r.RemoteAddr)
