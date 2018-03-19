@@ -22,6 +22,16 @@ func Sendresponse(w http.ResponseWriter,r io.ReadCloser){
   w.Write([]byte(responses1))
 }
 
+func InvalidRequestData(w http.ResponseWriter,r io.ReadCloser){
+  w.Header().Set("Content-Type", "application/json")
+   w.WriteHeader(500)
+  responses := &ErrorResponses{
+    Msg : config.INVALID_REQUEST_DATA,
+    Code : config.INTERNAL_SERVER_ERROR}
+  responses1, _ := json.Marshal(responses)
+  w.Write([]byte(responses1))
+}
+
 func InvalidMethod(w http.ResponseWriter,r io.ReadCloser){
   w.Header().Set("Content-Type", "application/json")
    w.WriteHeader(405)
@@ -32,6 +42,12 @@ func InvalidMethod(w http.ResponseWriter,r io.ReadCloser){
   w.Write([]byte(responses1))
 }
 
-func ServerError(){
-  
+func DatabaseInsertionFailed(w http.ResponseWriter){
+  w.Header().Set("Content-Type", "application/json")
+   w.WriteHeader(500)
+  responses := &ErrorResponses{
+    Msg : config.RECORD_NOT_INSERTED,
+    Code : config.INTERNAL_SERVER_ERROR}
+  responses1, _ := json.Marshal(responses)
+  w.Write([]byte(responses1))
 }
