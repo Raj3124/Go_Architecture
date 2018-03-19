@@ -7,8 +7,12 @@ const(
 	DB_PASS="root"
 
 // all messages
-	INVALID_FORMAT = "Invalid format of Request"
+	INVALID_FORMAT = "Api not defined in URL"
 	INVALID_METHOD_MESSAGE = "Invalid method"
+	RECORD_NOT_INSERTED = "Record insertion failed"
+	RECORD_NOT_UPDATED = "Record updation failed"
+	RECORD_NOT_DELETED = "Record deletion failed"
+	INVALID_REQUEST_DATA = "Request data is not valid"	
 
 // all status codes
 	HTTP_OK = "200"
