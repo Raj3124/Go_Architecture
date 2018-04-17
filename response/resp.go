@@ -51,3 +51,23 @@ func DatabaseInsertionFailed(w http.ResponseWriter){
   responses1, _ := json.Marshal(responses)
   w.Write([]byte(responses1))
 }
+
+func Nodatafound (w http.ResponseWriter){
+  w.Header().Set("Content-Type", "application/json")
+   w.WriteHeader(500)
+  responses := &ErrorResponses{
+    Msg : config.RECORD_NOT_FOUND,
+    Code : config.INTERNAL_SERVER_ERROR}
+  responses1, _ := json.Marshal(responses)
+  w.Write([]byte(responses1))
+}
+
+func DatabaseSelectionFailed(w http.ResponseWriter){
+  w.Header().Set("Content-Type", "application/json")
+   w.WriteHeader(500)
+  responses := &ErrorResponses{
+    Msg : config.RECORD_NOT_FOUND,
+    Code : config.INTERNAL_SERVER_ERROR}
+  responses1, _ := json.Marshal(responses)
+  w.Write([]byte(responses1))
+}
