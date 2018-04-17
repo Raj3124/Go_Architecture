@@ -13,6 +13,7 @@ const(
 	RECORD_NOT_UPDATED = "Record updation failed"
 	RECORD_NOT_DELETED = "Record deletion failed"
 	INVALID_REQUEST_DATA = "Request data is not valid"	
+	RECORD_NOT_FOUND = "record not found"
 
 // all status codes
 	HTTP_OK = "200"
