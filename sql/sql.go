@@ -42,3 +42,21 @@ func Insert(test string,w http.ResponseWriter){
 		resp.DatabaseInsertionFailed(w)
 	}
 }
+
+func View(sem string,sub string,w http.ResponseWriter){
+var u1,u2 Student 
+ rows,err=db.Query("select eid,ename from student where semester=? and eid IN (select eid from enrolled where sid IN(select sid from subject_table where sname=?))",sem,sub)
+    if err!=nil{
+   	 resp.DatabaseSelectionFailed(w)
+    }
+else{
+defer rows.Close()
+    if rows.Next(){
+   		 rows.Scan(&u1.eid,&u1.ename)
+   		 json.NewEncoder(w).Encode(u1)
+}else{
+             json.NewEncoder(w).Encode(u1)
+            resp.Nodatafound(w)
+  }
+}
+
